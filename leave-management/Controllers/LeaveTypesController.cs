@@ -2,6 +2,7 @@
 using leave_management.Contracts;
 using leave_management.Data;
 using leave_management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace leave_management.Controllers
 {
+    // Only Administrators are allowed access to pages in this Controller
+    [Authorize(Roles="Administrator")]
     public class LeaveTypesController : Controller
     {
         // LeaveType specific Repository and Mapper
@@ -111,6 +114,7 @@ namespace leave_management.Controllers
                 return View(data);
             }
         }
+
 
         // GET: LeaveTypesController/Edit/5        
         /// <summary>
