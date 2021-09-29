@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using leave_management.Data;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace leave_management
         /// </summary>
         /// <param name="userManager"></param>
         /// <param name="roleManager"></param>
-        public static void Seed(UserManager<IdentityUser> userManager,
+        public static void Seed(UserManager<Employee> userManager,
             RoleManager<IdentityRole> roleManager)
         {
             SeedRoles(roleManager);
@@ -24,12 +25,12 @@ namespace leave_management
         /// Create and add an "admin" user as a default to the database, only if it doesn't already exist
         /// </summary>
         /// <param name="userManager"></param>
-        private static void SeedUsers(UserManager<IdentityUser> userManager)
+        private static void SeedUsers(UserManager<Employee> userManager)
         {
             // Create an admin user and add admin user to Administrator role
-            if (userManager.FindByNameAsync("admin").Result == null)
+            if (userManager.FindByNameAsync("admin@localhost.com").Result == null)
             {
-                var user = new IdentityUser
+                var user = new Employee
                 {
                     UserName = "admin@localhost.com",
                     Email = "admin@localhost.com"

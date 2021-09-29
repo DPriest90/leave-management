@@ -25,5 +25,8 @@ namespace leave_management.Data
         public LeaveType LeaveType { get; set; }
 
         public int LeaveTypeId { get; set; }
+
+        // This is the year i.e. 2021-2022
+        public int Period { get; set; }
     }
 }

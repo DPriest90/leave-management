@@ -1,0 +1,108 @@
+﻿@model leave_management.Models.ViewAllocationsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details for - @Model.Employee.Lastname, @Model.Employee.Firstname</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.Firstname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Firstname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.Lastname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Lastname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.TaxId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.TaxId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.DateOfBirth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.DateJoined)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.DateJoined)
+        </dd>
+    </dl>
+</div>
+
+<hr />
+
+<h2>Leave Allocations</h2>
+
+@* Loop through this employees LeaveAllocation records and display on page *@
+<div class="card" style="width: 12rem;">
+    <ul class="list-group list-group-flush">
+        @foreach (var item in Model.LeaveAllocations)
+        {
+            <li class="list-group-item">
+                <h6>@item.LeaveType.Name <span class="badge badge-secondary">@item.NumberOfDays</span></h6>
+                <a id="detailsBtn" class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">
+                    <i class="fa fa-pencil"></i> Edit
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@* Alternate display where each LeaveAllocations are stacked horizontally. Keeping it same as Trevoirs for the courses sake for now. *@
+@*@foreach (var item in Model.LeaveAllocations)
+    {
+        <div class="col-md-4 card" style="float: left;">
+
+            <h2>@item.LeaveType.Name <span class="badge badge-secondary">@item.NumberOfDays Days Remaining</span></h2>
+
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">
+                    <a id="detailsBtn" class="btn btn-outline-warning btn-block" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="fa fa-pencil"></i> Edit
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    }
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
